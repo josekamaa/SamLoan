@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - SAM Loans</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>SAM Loans - Admin</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="admin.html">Admin</a>
+                <button class="btn btn-primary" onclick="handleLogout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="admin-dashboard">
+        <div class="container">
+            <div class="admin-header">
+                <h1>Admin Panel</h1>
+                <div class="admin-stats">
+                    <div class="stat-card">
+                        <h3>Pending Applications</h3>
+                        <p id="pendingCount">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Users</h3>
+                        <p id="totalUsers">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Disbursed</h3>
+                        <p id="totalDisbursed">₦0</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="admin-tabs">
+                <button class="tab-btn active" data-tab="pending" onclick="switchTab('pending')">Pending Loans</button>
+                <button class="tab-btn" data-tab="approved" onclick="switchTab('approved')">Approved</button>
+                <button class="tab-btn" data-tab="disbursed" onclick="switchTab('disbursed')">Disbursed</button>
+                <button class="tab-btn" data-tab="rejected" onclick="switchTab('rejected')">Rejected</button>
+                <button class="tab-btn" data-tab="users" onclick="switchTab('users')">Users</button>
+            </div>
+
+            <!-- Loan Management -->
+            <div id="pendingLoans" class="tab-content active">
+                <h2>Pending Loan Applications</h2>
+                <div id="pendingLoansList"></div>
+            </div>
+
+            <div id="approvedLoans" class="tab-content">
+                <h2>Approved Loans</h2>
+                <div id="approvedLoansList"></div>
+            </div>
+
+            <div id="disbursedLoans" class="tab-content">
+                <h2>Disbursed Loans</h2>
+                <div id="disbursedLoansList"></div>
+            </div>
+
+            <div id="rejectedLoans" class="tab-content">
+                <h2>Rejected Loans</h2>
+                <div id="rejectedLoansList"></div>
+            </div>
+
+            <div id="usersTab" class="tab-content">
+                <h2>User Management</h2>
+                <div id="usersList"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Action Modal -->
+    <div id="actionModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeActionModal()">&times;</span>
+            <h2 id="actionModalTitle">Loan Action</h2>
+            <form id="actionForm" onsubmit="handleLoanAction(event)">
+                <input type="hidden" id="actionLoanId">
+                <input type="hidden" id="actionType">
+                <div id="actionFields">
+                    <!-- Dynamic fields based on action -->
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/supabase-config.js"></script>
+    <script src="js
