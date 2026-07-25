@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAM Loans - Soft Loan Application</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>SAM Loans</h1>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="admin.html">Admin</a>
+                <button id="authBtn" class="btn btn-primary" onclick="handleAuth()">Login</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Quick & Easy Soft Loans</h1>
+                <p>Get access to soft loans with competitive interest rates. Apply now and get approved within 24 hours.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="showAuthModal('register')">Get Started</button>
+                    <button class="btn btn-secondary" onclick="showAuthModal('login')">Sign In</button>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <h3>₦50M+</h3>
+                    <p>Disbursed</p>
+                </div>
+                <div class="stat">
+                    <h3>5,000+</h3>
+                    <p>Happy Customers</p>
+                </div>
+                <div class="stat">
+                    <h3>24hrs</h3>
+                    <p>Approval Time</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="container">
+            <h2>Why Choose SAM Loans?</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Easy Application</h3>
+                    <p>Apply for loans in minutes from any device</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Fast Approval</h3>
+                    <p>Get approved within 24 hours</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Competitive Rates</h3>
+                    <p>Low interest rates starting at 5%</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure</h3>
+                    <p>Your data is safe and secure</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAuthModal()">&times;</span>
+            <div id="authFormContainer">
+                <h2 id="authModalTitle">Login</h2>
+                <form id="authForm" onsubmit="handleAuthSubmit(event)">
+                    <div id="nameField" style="display:none;">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" placeholder="Enter your full name">
+                    </div>
+                    <div>
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                    </div>
+                    <div>
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="authSubmitBtn">Login</button>
+                </form>
+                <p id="authSwitchText">
+                    Don't have an account? 
+                    <a href="#" onclick="switchAuthMode('register')">Register</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>
